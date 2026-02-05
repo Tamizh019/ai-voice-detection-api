@@ -20,15 +20,16 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Testing files (not needed for deployment)
-test_sample/sample2.mp3
-verify_sample.py
-test_api.py
+# Testing and Samples
+tests/
+samples/
+utils/__pycache__/
+core/__pycache__/
 debug_*.py
 !requirements.txt
 
 # Deployment configs for other platforms
 render.yaml
 Procfile
-README.md
-!README_HF.md
+# Hugging Face README config is handled separately
+!README.md

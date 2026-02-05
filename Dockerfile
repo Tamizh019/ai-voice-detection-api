@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY main.py .
-COPY audio_processor.py .
+COPY core/ ./core/
 
 # Expose port (Hugging Face uses 7860 by default)
 EXPOSE 7860

@@ -33,7 +33,7 @@ pinned: false
 
 ### ⚡ Quick Test
 We have provided sample Base64 files for you!
-1. Open `human_sample_base64.txt` (or `ai_sample_base64.txt`)
+1. Open `samples/human_sample(Base64).txt` (or `samples/AI_sample(Base64).txt`)
 2. Copy the **entire content**
 3. Paste it into `audioBase64` below:
 
@@ -71,8 +71,8 @@ If you prefer a GUI tool like Postman:
 ```
 
 **Where to get the content?**
-- **For Human Test:** Open `human_sample(Base64).txt` and copy everything.
-- **For AI Test:** Open `AI_sample(Base64).txt` and copy everything.
+- **For Human Test:** Open `samples/human_sample(Base64).txt` and copy everything.
+- **For AI Test:** Open `samples/AI_sample(Base64).txt` and copy everything.
 
 ---
 
@@ -84,7 +84,7 @@ If you find it hard to convert your own mp3 files to Base64, we included a helpe
 2. **Run this command** in your terminal:
 
 ```bash
-python generate_base64.py "path/to/your/audio.mp3"
+python utils/generate_base64.py "path/to/your/audio.mp3"
 ```
 
 It will print the Base64 string for you to copy! 🚀
@@ -111,6 +111,27 @@ It will print the Base64 string for you to copy! 🚀
 - **ML:** NumPy, SciPy, numba
 - **Deployment:** Hugging Face Spaces (Docker)
 - **Security:** Environment-based API key auth
+
+---
+
+## 📂 Project Structure
+
+```
+AI_Voice_Detection/
+├── main.py                 # FastAPI application
+├── core/                   # Core logic
+│   └── audio_processor.py  # ML feature extraction & classification
+├── utils/                  # Utility scripts
+│   ├── generate_base64.py  # Audio → Base64 converter
+│   └── keep_alive.py       # Keep HF Space awake
+├── samples/                # Sample data
+│   ├── AI_sample(Base64).txt
+│   └── human_sample(Base64).txt
+├── tests/                  # Testing scripts
+│   └── verify_sample.py    # Verify deployment
+├── Docs/                   # Documentation
+└── requirements.txt        # Dependencies
+```
 
 ---
 

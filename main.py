@@ -63,8 +63,8 @@ class ErrorResponse(BaseModel):
     message: str
 
 
-# Import audio processing module (Phase 2 ML integration)
-from audio_processor import process_voice as process_audio
+# Import audio processing module
+from core.audio_processor import process_voice as process_audio
 
 
 # API Endpoints
