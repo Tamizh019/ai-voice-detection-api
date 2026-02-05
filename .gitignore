@@ -20,14 +20,11 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# Documentation and testing files (not needed for deployment)
-Docs/
-test_sample/
+# Testing files (not needed for deployment)
+test_sample/sample2.mp3
 verify_sample.py
-generate_base64.py
 test_api.py
 debug_*.py
-*.txt
 !requirements.txt
 
 # Deployment configs for other platforms
