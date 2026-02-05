@@ -9,8 +9,7 @@ pinned: false
 
 # 🎤 AI Voice Detection API (For Hackathon)
 
-> **Detect AI-generated voices with confidence**  
-> A FastAPI-powered solution for identifying synthetic speech across 5 languages
+> **Test whether your audio sample is AI-generated or human speech**
 
 [![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/Tamizh019/AI_Voice_Detection)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
@@ -31,11 +30,9 @@ pinned: false
 
 **API Endpoint:** `https://tamizh019-ai-voice-detection.hf.space/api/voice-detection`
 
-### ⚡ Quick Test
-We have provided sample Base64 files for you!
-1. Open `samples/human_sample(Base64).txt` (or `samples/AI_sample(Base64).txt`)
-2. Copy the **entire content**
-3. Paste it into `audioBase64` below:
+### Test with cURL
+
+We've provided sample Base64 files in `samples/` folder!
 
 ```bash
 curl -X POST https://tamizh019-ai-voice-detection.hf.space/api/voice-detection \
@@ -44,122 +41,103 @@ curl -X POST https://tamizh019-ai-voice-detection.hf.space/api/voice-detection \
   -d '{
     "language": "English",
     "audioFormat": "mp3",
-    "audioBase64": "PASTE_CONTENT_FROM_TXT_FILE_HERE"
+    "audioBase64": "PASTE_BASE64_FROM_SAMPLES_FOLDER"
   }'
 ```
 
----
+### Test with Postman
 
-## 🟠 Testing with Postman
-
-If you prefer a GUI tool like Postman:
-
-1. **Create New Request**: Set method to `POST`
+1. **Method**: `POST`
 2. **URL**: `https://tamizh019-ai-voice-detection.hf.space/api/voice-detection`
-3. **Headers Tab**:
+3. **Headers**:
    - `Content-Type`: `application/json`
    - `x-api-key`: `YOUR_API_KEY`
-4. **Body Tab** (Select `raw` -> `JSON`)
+4. **Body** (raw JSON):
 
-**Paste this template:**
 ```json
 {
   "language": "English",
   "audioFormat": "mp3",
-  "audioBase64": "PASTE_CONTENT_HERE"
+  "audioBase64": "PASTE_BASE64_HERE"
 }
 ```
 
-**Where to get the content?**
-- **For Human Test:** Open `samples/human_sample(Base64).txt` and copy everything.
-- **For AI Test:** Open `samples/AI_sample(Base64).txt` and copy everything.
+**Sample files**: Use `samples/human_sample(Base64).txt` or `samples/AI_sample(Base64).txt`
 
 ---
 
-## 🛠️ Need Custom Audio?
+## � Request & Response
 
-If you find it hard to convert your own mp3 files to Base64, we included a helper script!
-
-1. **Install Python** (if not installed)
-2. **Run this command** in your terminal:
-
-```bash
-python utils/generate_base64.py "path/to/your/audio.mp3"
+**Request:**
+```json
+{
+  "language": "English",
+  "audioFormat": "mp3",
+  "audioBase64": "BASE64_STRING"
+}
 ```
 
-It will print the Base64 string for you to copy! 🚀
+**Response:**
+```json
+{
+  "status": "success",
+  "language": "English",
+  "classification": "AI_GENERATED",
+  "confidenceScore": 0.85,
+  "explanation": "Strong synthetic spectral signature"
+}
+```
 
 ---
 
 ## ✨ Features
 
-- 🎯 **Accurate Detection** - Rule-based heuristics tuned for modern AI voices
-- 🌍 **Multi-Language** - Supports Tamil, English, Hindi, Malayalam, Telugu
-- ⚡ **Fast Response** - Results in 2-5 seconds
+- 🎯 **AI Detection** - Identifies AI-generated voices
+- 🌍 **5 Languages** - Tamil, English, Hindi, Malayalam, Telugu
+- ⚡ **Fast** - Results in 2-5 seconds
 - 🔒 **Secure** - API key authentication
-- 📊 **Confidence Scoring** - 0.0 to 1.0 confidence with explanations
-- 🚫 **No Hardcoding** - Real audio analysis using librosa
+- 📊 **Confidence Score** - 0.0 to 1.0 with explanation
 
 ---
 
-## 📖 Quick Start
+## �️ Convert Your Own Audio
 
-### Used Technical Stack
-
-- **Backend:** FastAPI, Uvicorn
-- **Audio Processing:** librosa, pydub, soundfile
-- **ML:** NumPy, SciPy, numba
-- **Deployment:** Hugging Face Spaces (Docker)
-- **Security:** Environment-based API key auth
-
----
-
-## 📂 Project Structure
-
-```
-AI_Voice_Detection/
-├── main.py                 # FastAPI application
-├── core/                   # Core logic
-│   └── audio_processor.py  # ML feature extraction & classification
-├── utils/                  # Utility scripts
-│   ├── generate_base64.py  # Audio → Base64 converter
-│   └── keep_alive.py       # Keep HF Space awake
-├── samples/                # Sample data
-│   ├── AI_sample(Base64).txt
-│   └── human_sample(Base64).txt
-├── tests/                  # Testing scripts
-│   └── verify_sample.py    # Verify deployment
-├── Docs/                   # Documentation
-└── requirements.txt        # Dependencies
+```bash
+python utils/generate_base64.py "path/to/your/audio.mp3"
 ```
 
 ---
 
-## 📊 API Reference
+## 🧠 How It Works
 
-### Endpoints
+Analyzes audio features using **librosa**:
+- **Spectral Flatness** - AI voices are more uniform
+- **Pitch Variation** - Humans vary naturally
+- **Energy Patterns** - AI maintains steady volume
+- **MFCCs** - Voice texture analysis
+
+📚 **Detailed Docs:** [Docs/HOW_IT_WORKS.md](./Docs/HOW_IT_WORKS.md)
+
+---
+
+## 📊 API Endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-| `/api/voice-detection` | POST | Classify audio as AI or Human |
+| `/api/voice-detection` | POST | Classify audio |
 | `/health` | GET | Health check |
-| `/` | GET | API information |
+| `/` | GET | API info |
 
-### Authentication
+**Authentication:** All requests require `x-api-key` header
 
-All requests require the `x-api-key` header:
-```
-x-api-key: YOUR_API_KEY
-```
+---
 
-### Supported Languages
-- Tamil
-- English
-- Hindi
-- Malayalam
-- Telugu
+## 🛠️ Tech Stack
 
-📚 **Complete API Docs:** [API_GUIDE.md](./Docs/API_GUIDE.md)
+- **Backend:** FastAPI, Uvicorn
+- **Audio:** librosa, pydub, soundfile
+- **ML:** NumPy, SciPy
+- **Deployment:** Hugging Face Spaces (Docker)
 
 ---
 
