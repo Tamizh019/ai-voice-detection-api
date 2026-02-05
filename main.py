@@ -33,7 +33,7 @@ app.add_middleware(
 
 # Configuration
 VALID_LANGUAGES = ["Tamil", "English", "Hindi", "Malayalam", "Telugu"]
-VALID_FORMATS = ["mp3", "wav", "ogg", "flac"]
+VALID_FORMATS = ["mp3"]  
 API_KEY = os.getenv("API_KEY")
 if not API_KEY:
     raise ValueError("API_KEY not found in environment variables! Please set it in .env or your deployment settings.")
