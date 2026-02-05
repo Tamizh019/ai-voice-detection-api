@@ -44,7 +44,7 @@ MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB limit
 class VoiceRequest(BaseModel):
     """Request model for voice detection endpoint"""
     language: str = Field(..., description="Language of the audio (Tamil, English, Hindi, Malayalam, Telugu)")
-    audioFormat: str = Field(..., description="Format of the audio file (mp3, wav, ogg, flac)")
+    audioFormat: str = Field(..., description="Format of the audio file (mp3)")
     audioBase64: str = Field(..., description="Base64 encoded audio data")
 
 
@@ -63,7 +63,6 @@ class ErrorResponse(BaseModel):
     message: str
 
 
-# Import audio processing module (Phase 2 ML integration)
 from audio_processor import process_voice as process_audio
 
 
@@ -96,7 +95,7 @@ async def detect_voice(
     Detect if voice is AI-generated or Human.
     
     - **language**: One of Tamil, English, Hindi, Malayalam, Telugu
-    - **audioFormat**: Audio format (mp3, wav, ogg, flac)
+    - **audioFormat**: Audio format (mp3)
     - **audioBase64**: Base64 encoded audio data
     
     Returns classification (AI_GENERATED or HUMAN) with confidence score.
@@ -125,7 +124,7 @@ async def detect_voice(
             status_code=400,
             content={
                 "status": "error",
-                "message": f"Invalid audio format. Must be one of: {', '.join(VALID_FORMATS)}"
+                "message": f"Invalid audio format. Must be only : {', '.join(VALID_FORMATS)}"
             }
         )
     
