@@ -22,7 +22,7 @@ Thumbs.db
 
 # Testing and Samples
 tests/
-samples/
+samples/test_sample
 utils/__pycache__/
 core/__pycache__/
 debug_*.py

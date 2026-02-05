@@ -7,7 +7,7 @@ sdk: docker
 pinned: false
 ---
 
-# 🎤 AI Voice Detection API (For Hackathon)
+# 🎤 AI Voice Detection API
 
 > **Test whether your audio sample is AI-generated or human speech**
 
