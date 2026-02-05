@@ -2,7 +2,6 @@
 Keep-Alive Service for Hugging Face Spaces
 Pings the API every 24 hours to prevent sleep
 """
-
 import requests
 import time
 import os
