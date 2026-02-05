@@ -8,7 +8,7 @@ import os
 from datetime import datetime
 
 # Your Hugging Face Space URL (update after deployment)
-API_URL = "https://YOUR_USERNAME-YOUR_SPACE_NAME.hf.space/health"
+API_URL = "https://tamizh019-ai-voice-detection.hf.space/health"
 
 # Ping interval (24 hours in seconds)
 PING_INTERVAL = 24 * 60 * 60  # 86400 seconds

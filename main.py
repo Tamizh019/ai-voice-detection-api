@@ -68,7 +68,7 @@ from audio_processor import process_voice as process_audio
 
 
 # API Endpoints
-@app.get("/")
+@app.get("/", methods=["GET", "HEAD"])
 async def root():
     """Root endpoint - API info"""
     return {
@@ -81,7 +81,7 @@ async def root():
     }
 
 
-@app.get("/health")
+@app.get("/health", methods=["GET", "HEAD"])
 async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "message": "API is running"}
