@@ -1,0 +1,37 @@
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation and testing files (not needed for deployment)
+Docs/
+test_sample/
+verify_sample.py
+generate_base64.py
+test_api.py
+debug_*.py
+*.txt
+!requirements.txt
+
+# Deployment configs for other platforms
+render.yaml
+Procfile
+README.md
+!README_HF.md
